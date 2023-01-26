@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:04:02 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/26 15:12:59 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:53:25 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,23 @@ int		fract_comp(char **av, t_fractol *data)
 	return (1);
 }
 
-int		main(int ac, char **av)
+int		main(int argc, char **argv)
 {
-	t_fractol	*data;
+	t_fractol	*f;
 
-	if (!(data = (t_fractol *)malloc(sizeof(t_fractol))))
+	if (!(f = (t_fractol *)malloc(sizeof(t_fractol))))
 		return (-1);
-	if (ac == 2)
+	if (argc == 2)
 	{
-		mlx_win_init(data);
-		if ((fract_comp(av, data)) == 0)
+		mlx_win_init(f);
+		if ((fract_comp(argv, f)) == 0)
 			return (0);
-		fract_init(data);
-		mlx_hook(data->win, 6, 1L < 6, mouse_julia, data);
-		mlx_hook(data->win, 17, 0L, ft_close, data);
-		mlx_key_hook(data->win, key_hook, data);
-		mlx_mouse_hook(data->win, mouse_hook, data);
-		mlx_loop(data->mlx);
+		fract_init(f);
+		mlx_hook(f->win, 6, 1L < 6, mouse_julia, f);
+		mlx_hook(f->win, 17, 0L, ft_close, f);
+		mlx_key_hook(f->win, key_hook, f);
+		mlx_mouse_hook(f->win, mouse_hook, f);
+		mlx_loop(f->mlx);
 	}
 	else
 		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\", \"burningship\"");

@@ -6,10 +6,9 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/24 18:59:19 by fsuomins          #+#    #+#              #
-#    Updated: 2023/01/26 15:12:52 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/01/26 15:53:35 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 SRC_PATH = srcs
 SRC_NAME = main.c hooks.c mandelbrot.c julia.c utils.c
