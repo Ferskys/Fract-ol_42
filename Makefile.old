@@ -1,0 +1,47 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/08 03:24:15 by ldias-fe          #+#    #+#              #
+#    Updated: 2023/01/26 20:19:21 by fsuomins         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = fract-ol
+MLX_PATH = ./minilibx-linux/
+INCLUDES = -I $(MLX_PATH)
+PATH_LIBS = -L$(MLX_PATH)
+LIBS = -lmlx -lX11 -lXext -lm
+FLAGS = -Wall -Wextra -Werror -g3
+
+SRCS 	= 	hooks.c \
+			julia.c \
+			main.c \
+			mandelbrot.c \
+			utils.c
+			
+
+OBJS 		= $(SRCS:.c=.o)
+
+$(NAME): 	$(OBJS)
+	@make -C $(MLX_PATH) --no-print-directory
+	cc -o $(NAME) $(OBJS) $(LIBS) $(PATH_LIBS) $(INCLUDES)
+
+$(OBJS):	$(SRCS)
+		cc $(FLAGS) -I. -c $(SRCS)
+
+all:		$(NAME)
+
+clean:
+		rm -rf $(OBJS)
+
+fclean:	clean
+		rm -rf $(NAME)
+
+re:		fclean all clean
+
+.PHONY: all clean fclean re
+

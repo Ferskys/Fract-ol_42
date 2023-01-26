@@ -6,48 +6,51 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/24 18:59:19 by fsuomins          #+#    #+#              #
-#    Updated: 2023/01/26 15:53:35 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/01/26 20:25:59 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_PATH = srcs
-SRC_NAME = main.c hooks.c mandelbrot.c julia.c utils.c
+NAME = fractol
+OS	 = $(shell uname)
 
-OBJ_PATH = objs
-OBJ_NAME = $(SRC_NAME:.c=.o)
+INCLUDES = ../includes
+SRC 	 = ./src
 
-CC = clang
-CFLAGS = -Wall -Werror -Wextra
+SRCS =  hooks.c \
+		julia.c \
+		main.c \
+		mandelbrot.c \
+		utils.c
 
-CPPFLAGS = -I includes -I libft/includes
+OBJS = $(patsubst %.c, %.o, $(SRCS))
+CC	 = gcc
+CFLAGS = -Wall -Wextra -Werror -g3
 
-LDFLAGS = -L libft
-LDLIBS = -O2 -lft -lm -lmlx -framework OpenGL -framework AppKit
+# mlx library
+ifeq ($(OS), Linux)
+	MLX		= ./miniLibX_X11/
+	MLX_LNK	= -L $(MLX) -l mlx -lXext -lX11
+else
+	MLX		= ./miniLibX/
+	MLX_LNK	= -L $(MLX) -l mlx -framework OpenGL -framework AppKit
+endif
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+MLX_INC	= -I $(MLX)
+MLX_LIB	= $(addprefix $(MLX),mlx.a)
 
-all: $(NAME)
+$(NAME) : $(OBJS)
+	@ar rcs $(NAME) $(OBJS) 
 
-$(NAME): $(OBJ)
-	@make -C libft
-	@$(CC) $(LDFLAGS) $(LDLIBS) $^ -o $@
-	
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -c $< $(CPPFLAGS) -o $@
+$(OBJS) : $(SRCS) fractol.h
+	cc $(CFLAGS) -c $(SRCS) -I $(INCLUDE) 
 
-clean:
-	@make -C libft clean
-	@rm -f $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "Fractol: Removing Objs"
+all : $(NAME)
 
-fclean: clean
-	@make -C libft fclean
+clean : 
+	@rm -f $(OBJS)
+
+fclean : clean
 	@rm -f $(NAME)
-	@echo "Fractol : Removing Fractol"
 
-re: fclean all
-
+re : fclean all
 .PHONY: all clean fclean re
