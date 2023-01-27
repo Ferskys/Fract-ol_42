@@ -6,11 +6,11 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:38:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/26 19:48:32 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:19:31 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 int		close_win(void)
 {
@@ -36,6 +36,6 @@ void	msg(t_fractol *f)
 	nb = ft_itoa(f->it_max);
 	message = ft_strjoin("iterations : ", nb);
 	mlx_string_put(f->mlx, f->win, 10, 10, 0xFFFFFF, message);
-	ft_strdel(&message);
-	ft_strdel(&nb);
+	free(message);
+	free(nb);
 }

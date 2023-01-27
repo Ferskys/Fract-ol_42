@@ -6,11 +6,11 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:55:29 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/26 20:22:46 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:27:01 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 int		julia_mouse(int x, int y, t_fractol *f)
 {
@@ -18,7 +18,7 @@ int		julia_mouse(int x, int y, t_fractol *f)
 	{
 		f->c_r = x * 2;
 		f->c_i = y * 2 - 800;
-		fract_math(f);
+		//fract_math(f);
 	}
 	return (0);
 }
@@ -74,24 +74,4 @@ void	*julia(void *tab)
 		f->x++;
 	}
 	return (tab);
-}
-
-void	julia_pthread(t_fractol *f)
-{
-	t_fractol	tab[THREAD_NUMBER];
-	pthread_t	t[THREAD_NUMBER];
-	int			i;
-
-	i = 0;
-	while (i < THREAD_NUMBER)
-	{
-		ft_memcpy((void*)&tab[i], (void*)f, sizeof(t_fractol));
-		tab[i].y = THREAD_WIDTH * i;
-		tab[i].y_max = THREAD_WIDTH * (i + 1);
-		pthread_create(&t[i], NULL, julia, &tab[i]);
-		i++;
-	}
-	while (i--)
-		pthread_join(t[i], NULL);
-	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }

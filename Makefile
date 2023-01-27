@@ -1,47 +1,49 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile.old                                       :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 03:24:15 by ldias-fe          #+#    #+#              #
-#    Updated: 2023/01/26 20:29:15 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/01/27 15:25:19 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fract-ol
-# MLX_PATH = ./minilibx-linux/
-# INCLUDES = -I $(MLX_PATH)
-# PATH_LIBS = -L$(MLX_PATH)
-LIBS = -lmlx -lX11 -lXext -lm
-FLAGS = -Wall -Wextra -Werror -g3
+NAME = fractol
+FLAGS 			= -Wall -Wextra -Werror -g3
+LIBFTFLAGS 		= -L ./libft/ -lft
+LIBXFLAGS 		= -lmlx -lXext -lX11 -lm -lz
 
-SRCS 	= 	hooks.c \
+FILES 	= 	hooks.c \
 			julia.c \
 			main.c \
 			mandelbrot.c \
 			utils.c
 			
-
+SRCS = $(addprefix ./src/, $(FILES))
 OBJS 		= $(SRCS:.c=.o)
+INCLUDES = -I ./includes -I ./libft
 
-$(NAME): 	$(OBJS)
-	@make -C $(MLX_PATH) --no-print-directory
-	cc -o $(NAME) $(OBJS) $(LIBS) $(PATH_LIBS) $(INCLUDES)
+$(NAME): libft/libft.a $(OBJS)
+	cc $(FLAGS) -o $(NAME) $(OBJS) $(LIBFTFLAGS) $(LIBXFLAGS) $(INCLUDES)
 
-$(OBJS):	$(SRCS)
-		cc $(FLAGS) -I. -c $(SRCS)
+libft/libft.a : 
+	@make -C ./libft
 
-all:		$(NAME)
+%.o: %.c
+	@cc $(FLAGS) $(INCLUDES) -c $< -o $@
+	
+all:	$(NAME)
 
 clean:
-		rm -rf $(OBJS)
+		rm -rf $(OBJS) 
+		make -C ./libft clean
 
 fclean:	clean
 		rm -rf $(NAME)
+		make -C ./libft fclean
 
 re:		fclean all clean
 
 .PHONY: all clean fclean re
-

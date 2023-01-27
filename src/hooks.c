@@ -6,11 +6,11 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:37:35 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/26 19:48:35 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:26:17 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 int		key_hook2(int keycode, t_fractol *f)
 {
@@ -46,7 +46,7 @@ int		key_hook(int keycode, t_fractol *f)
 	else if (keycode == 18)
 		f->color = 1677216;
 	key_hook2(keycode, f);
-	fract_calc(f);
+	draw_frac(f);
 	return (0);
 }
 
@@ -72,6 +72,6 @@ int		mouse_hook(int mousecode, int x, int y, t_fractol *f)
 		ft_zoom(x, y, f);
 	else if (mousecode == 5 || mousecode == 2)
 		ft_dezoom(x, y, f);
-	fract_calc(f);
+	draw_frac(f);
 	return (0);
 }
