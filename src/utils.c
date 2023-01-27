@@ -6,16 +6,19 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:38:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 14:19:31 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:28:49 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int		close_win(void)
+int		close_win(t_fractol *f)
 {
-	exit(1);
-	return (0);
+	mlx_destroy_image(f->mlx, f->img);
+	mlx_destroy_window(f->mlx, f->win);
+	mlx_destroy_display(f->mlx);
+	free(f->mlx);
+	exit(0);
 }
 
 void	put_pxl_to_img(t_fractol *f, int x, int y, int color)

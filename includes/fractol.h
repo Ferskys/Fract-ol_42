@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:57:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 16:57:10 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/27 19:02:53 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void			julia_pthread(t_fractol *f);
 // void			*burningship(void *tab);
 // void			burningship_pthread(t_fractol *f);
 
-int				close_win(void);
+int				close_win(t_fractol *f);
 void			put_pxl_to_img(t_fractol *f, int x, int y, int color);
 void			msg(t_fractol *f);
 
@@ -86,5 +86,7 @@ void			fract_init(t_fractol *f);
 void			mlx_win_init(t_fractol *f);
 int				fract_comp(char **argv, t_fractol *f);
 int				main(int argc, char **argv);
+
+void			color(t_fractol *f);
 
 #endif

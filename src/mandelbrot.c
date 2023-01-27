@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:53:42 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 17:26:50 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:11:18 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	mandelbrot_math(t_fractol *f, double x, double y)
 		inter++;
 	}
 	if (inter == f->it_max)
-		put_pxl_to_img(f, x, y, 0xffffff);
+		put_pxl_to_img(f, x, y, 0x000000);
 	else
-		put_pxl_to_img(f, x, y, (inter * f->color));
+		put_pxl_to_img(f, x, y, (inter * f->color * inter));
 }
 
 void	mandelbrot(t_fractol *f)

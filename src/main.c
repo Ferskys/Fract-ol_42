@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:04:02 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 16:51:55 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:40:35 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 int	draw_frac(t_fractol *f)
 {
-	// if (f->fract == 0)
-	// {
-	//printf("entrei");
 	mandelbrot(f);
-	// }
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return(0);
 }
@@ -60,21 +56,20 @@ int		main(int argc, char **argv)
 {
 	t_fractol	f;
 
-	if (argc == 2)
+	if (argc < 2 || argc > 4)
 	{
-		mlx_win_init(&f);
-		if ((frac_comp(argv, &f)) == 0)
-			return (0);
-		fract_init(&f);
-		//draw_frac(&f);
-		mlx_loop_hook(f.mlx, draw_frac, &f);
-		//mlx_hook(f.win, 6, 1L < 6, julia_mouse, &f);
-		mlx_hook(f.win, 17, 0L, close_win, &f);
-		//mlx_key_hook(f.win, key_hook, &f);
-		//mlx_mouse_hook(f.win, mouse_hook, &f);
-		mlx_loop(f.mlx);
-	}
-	else
 		ft_putendl("Usage /fractol \"mandelbrot\", \"julia\"");
+		return (-1);
+	}
+	if ((frac_comp(argv, &f)) == 0)
+		return (-1);
+	mlx_win_init(&f);
+	fract_init(&f);
+	mlx_loop_hook(f.mlx, draw_frac, &f);
+	//mlx_hook(f.win, 6, 1L < 6, julia_mouse, &f);
+	mlx_hook(f.win, 17, 0L, close_win, &f);
+	mlx_key_hook(f.win, key_hook, &f);
+	//mlx_mouse_hook(f.win, mouse_hook, &f);
+	mlx_loop(f.mlx);
 	return (0);
 }
