@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:38:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/30 18:16:32 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:00:39 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int	mouse_zoom(int key, int x, int y, t_fractol *f)
 		f->max_im += f->max_im * 0.1;
 		printf("%f\n",f->max_re);
 	}
-	julia(f);
-	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return (1);
 }
 
