@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:53:42 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 18:11:18 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:34:31 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	mandelbrot_init(t_fractol *f)
 {
-	// f->it_max = 50;
-	// f->zoom = 1;
-	// f->x1 = -2.05;
-	// f->y1 = -1.3;
-	// f->color = 265;
-
 	f->min_re = -2.2;
 	f->max_re = 1.0;
 	f->min_im = -1.5;
@@ -38,7 +32,6 @@ void	mandelbrot_math(t_fractol *f, double x, double y)
 
 	f->z_r = 0;
 	f->z_i = 0;
-
 	inter = 0;
 	f->tmp = 0;
 	while (inter < f->it_max)

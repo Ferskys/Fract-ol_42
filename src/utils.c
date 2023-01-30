@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:38:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 18:28:49 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:16:32 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,94 @@ void	put_pxl_to_img(t_fractol *f, int x, int y, int color)
 	}
 }
 
-void	msg(t_fractol *f)
-{
-	char	*message;
-	char	*nb;
+// void	msg(t_fractol *f)
+// {
+// 	char	*message;
+// 	char	*nb;
 
-	nb = ft_itoa(f->it_max);
-	message = ft_strjoin("iterations : ", nb);
-	mlx_string_put(f->mlx, f->win, 10, 10, 0xFFFFFF, message);
-	free(message);
-	free(nb);
+// 	nb = ft_itoa(f->it_max);
+// 	message = ft_strjoin("iterations : ", nb);
+// 	mlx_string_put(f->mlx, f->win, 10, 10, 0xFFFFFF, message);
+// 	free(message);
+// 	free(nb);
+// }
+
+int	mouse_zoom(int key, int x, int y, t_fractol *f)
+{
+	x = 1;
+	y = 1;
+	if (key == 4 && x)
+	{
+		f->min_re -= f->min_re * 0.1;
+		f->max_re -= f->max_re * 0.1;
+		f->min_im -= f->min_im * 0.1;
+		f->max_im -= f->max_im * 0.1;
+		printf("%f\n",f->max_re);
+	}
+	if (key == 5 && y)
+	{
+		f->min_re += f->min_re * 0.1;
+		f->max_re += f->max_re * 0.1;
+		f->min_im += f->min_im * 0.1;
+		f->max_im += f->max_im * 0.1;
+		printf("%f\n",f->max_re);
+	}
+	julia(f);
+	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
+	return (1);
+}
+
+int		check_double(const char *str)
+{
+	if (*str == '-' || *str == '+')
+		str++;
+	if (*str == '.')
+		return (0);
+	while (*str && *str != '.')
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	if (*str == '.')
+	{
+		if (!ft_isdigit(*(str + 1)))
+			return (0);
+		str++;
+		while (*str)
+		{
+			if (!ft_isdigit(*str))
+				return (0);
+			str++;
+		}
+	}
+	return (1);
+}
+
+double	ft_atof(const char *str)
+{
+	int		sign;
+	double	result;
+	double	power;
+	int		i;
+
+	sign = 1;
+	result = 0;
+	power = 1;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			sign *= -1;
+	while (ft_isdigit(str[i]))
+		result = result * 10 + str[i++] - '0';
+	if (str[i] == '.')
+		i++;
+	while (ft_isdigit(str[i]))
+	{
+		result = result * 10 + str[i++] - '0';
+		power *= 10;
+	}
+	return (sign * result / power);
 }

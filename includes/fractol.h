@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:57:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 19:02:53 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/30 18:06:01 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ typedef struct	s_fractol
 	int			x;
 	int			y;
 	int			y_max;
-	int			it;
+	int			inter;
 	int			it_max;
 	int			show_text;
 	double		zoom;
 	double		x1;
 	double		y1;
+	double		arg_re;
+	double		arg_im;
 	double		c_r;
 	double		c_i;
 	double		z_r;
@@ -55,6 +57,9 @@ typedef struct	s_fractol
 	double		min_re;
 }				t_fractol;
 
+int				check_double(const char *str);
+
+double			ft_atof(const char *str);
 int				key_hook(int keycode, t_fractol *f);
 int				key_hook2(int keycode, t_fractol *f);
 void			ft_zoom(int x, int y, t_fractol *f);
@@ -65,22 +70,17 @@ void			mandelbrot_init(t_fractol *f);
 void			mandelbrot_math(t_fractol *f, double x, double y);
 void			mandelbrot(t_fractol *f);
 
-int				julia_mouse(int x, int y, t_fractol *f);
+//int				julia_mouse(int x, int y, t_fractol *f);
+int				check_julia(int argc, char **argv, t_fractol *f);
 void			julia_init(t_fractol *f);
-void			julia_math(t_fractol *f);
-void			*julia(void *tab);
-void			julia_pthread(t_fractol *f);
+void			julia_math(t_fractol *f, double x, double y);
+void			*julia(t_fractol *f);
 
-// void			burningship_init(t_fractol *f);
-// void			burningship_calc(t_fractol *f);
-// void			*burningship(void *tab);
-// void			burningship_pthread(t_fractol *f);
-
+int				mouse_zoom(int key, int x, int y, t_fractol *f);
 int				close_win(t_fractol *f);
 void			put_pxl_to_img(t_fractol *f, int x, int y, int color);
 void			msg(t_fractol *f);
 
-//void			fract_calc(t_fractol *f);
 int				draw_frac(t_fractol *f);
 void			fract_init(t_fractol *f);
 void			mlx_win_init(t_fractol *f);
