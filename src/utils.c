@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:38:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/30 19:00:39 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:24:29 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ void	put_pxl_to_img(t_fractol *f, int x, int y, int color)
 				&color, sizeof(int));
 	}
 }
-
-// void	msg(t_fractol *f)
-// {
-// 	char	*message;
-// 	char	*nb;
-
-// 	nb = ft_itoa(f->it_max);
-// 	message = ft_strjoin("iterations : ", nb);
-// 	mlx_string_put(f->mlx, f->win, 10, 10, 0xFFFFFF, message);
-// 	free(message);
-// 	free(nb);
-// }
 
 int	mouse_zoom(int key, int x, int y, t_fractol *f)
 {

@@ -6,9 +6,10 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:04:02 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/30 19:21:10 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:38:37 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "fractol.h"
 
@@ -28,8 +29,6 @@ void	fract_init(t_fractol *f)
 		mandelbrot_init(f);
 	else if (f->fract == 2)
 		julia_init(f);
-	//else if (f->fract == 2)
-	//	burningship_init(f);
 }
 
 void	mlx_win_init(t_fractol *f)
@@ -37,24 +36,8 @@ void	mlx_win_init(t_fractol *f)
 	f->mlx = mlx_init();
 	f->win = mlx_new_window(f->mlx, WIDTH, HEIGTH , "Fractol");
 	f->img = mlx_new_image(f->mlx, WIDTH, HEIGTH);
-	f->img_ptr = mlx_get_data_addr(f->img,
-			&f->bpp, &f->sl, &f->endian);
+	f->img_ptr = mlx_get_data_addr(f->img, &f->bpp, &f->sl, &f->endian);
 }
-
-int		frac_comp(char **argv, t_fractol *f)
-{
-	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
-		f->fract = 1;
-	else if (ft_strncmp(argv[1], "julia", 5) == 0)
-		f->fract = 2;
-	else
-	{
-		ft_putendl("Use: /fractol \"mandelbrot\"or\"julia[v_re] [v_im]\"");
-		return (0);
-	}
-	return (1);
-}
-
 
 int	check_julia(int argc, char **argv, t_fractol *f)
 {
@@ -73,33 +56,45 @@ int	check_julia(int argc, char **argv, t_fractol *f)
 	return (1);
 }
 
+int check_arg(t_fractol *f, int argc, char **argv)
+{
+    if(argc == 2 && ft_strncmp("mandelbrot", argv[1], 10) == 0)
+    {
+        f->fract = 1;
+        return (1);
+    }
+    else if(argc == 4 && ft_strncmp("julia", argv[1], 5) == 0
+        && ft_atof(argv[2]) >= -2.0 && ft_atof(argv[2]) <= 2.0
+        && ft_atof(argv[3]) >= -2.0 && ft_atof(argv[3]) <= 2.0)
+    {
+        f->fract = 2;
+        f->arg_re = ft_atof(argv[2]);
+        f->arg_im= ft_atof(argv[3]);
+        return (1);
+    }
+    else
+		ft_putendl("😞: /fractol \"mandelbrot\"or\"julia [v_re] [v_im]\"");
+    return (0);
+}
+
 int		main(int argc, char **argv)
 {
-	//t_fractol	f;
-	char	*test = "mandelbrot";
-	printf("%s\n", argv[1]);
-	printf("%d\n", argc);
-	if(*argv[1] == "mandelbrot")
-		printf("cheguei aqui");
+	t_fractol	f;
+	f.x = 0;
+	f.y = 0;
 
-	// // if (argc < 2 || argc > 4)
-	// // {
-	// // 	if(argv[1] == "mandelbrot")
-	// // 		printf("mandelbrot_error");
-	// // 	ft_putendl("Use: /fractol \"mandelbrot\"");
-	// // 	return (-1);
-	// // }
-	// f.arg_re =ft_atof(argv[2]);
-	// f.arg_im =ft_atof(argv[3]);
-	// if ((frac_comp(argv, &f)) == 0)
-	// 	return (-1);
-	// mlx_win_init(&f);
-	// fract_init(&f);
-	// mlx_loop_hook(f.mlx, draw_frac, &f);
-	// //mlx_hook(f.win, 6, 1L < 6, mouse_julia, &f);
-	// mlx_hook(f.win, 17, 0L, close_win, &f);
-	// mlx_key_hook(f.win, key_hook, &f);
-	// mlx_hook(f.win, 4, 1L << 2, &mouse_zoom, &f);
-	// mlx_loop(f.mlx);
-	// return (0);
+	if(!check_arg(&f, argc, argv))
+	{
+		exit(0);
+	}
+	mlx_win_init(&f);
+	fract_init(&f);
+	mlx_loop_hook(f.mlx, draw_frac, &f);
+	//mlx_hook(f.win, 6, 1L < 6, mouse_julia, &f);
+	mlx_hook(f.win, 17, 0L, close_win, &f);
+	mlx_key_hook(f.win, key_hook, &f);
+	//mlx_mouse_hook(f.win, mouse_hook, &f);
+	mlx_hook(f.win, 4, 1L << 2, &mouse_zoom, &f);
+	mlx_loop(f.mlx);
+	return (0);
 }
