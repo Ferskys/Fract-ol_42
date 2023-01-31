@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:37:35 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 16:24:27 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/31 19:03:27 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	color(t_fractol *f)
 	static int colors;
 
 	colors++;
-	if(colors == 5)
+	if(colors == 6)
 		colors = 0;
 	if (colors == 0)
 		f->color = 265;
@@ -29,6 +29,8 @@ void	color(t_fractol *f)
 		f->color = 2377216;
 	else if (colors == 4)
 		f->color = 677212;
+	else if (colors == 5)
+		f->color = 37212;
 }
 
 int		key_hook(int keycode, t_fractol *f)

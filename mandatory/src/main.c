@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:04:02 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 18:26:40 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/31 19:03:24 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	draw_frac(t_fractol *f)
 		mandelbrot(f);
 	else if(f->fract == 2)
 		julia(f);
-	else if(f->fract == 3)
-		tricorn(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 	return(0);
 }
@@ -31,8 +29,6 @@ void	fract_init(t_fractol *f)
 		mandelbrot_init(f);
 	else if (f->fract == 2)
 		julia_init(f);
-	else if (f->fract == 3)
-		tricorn_init(f);
 }
 
 void	mlx_win_init(t_fractol *f)
@@ -64,11 +60,6 @@ int check_arg(t_fractol *f, int argc, char **argv)
     if(argc == 2 && ft_strncmp("mandelbrot", argv[1], 10) == 0)
     {
         f->fract = 1;
-        return (1);
-    }
-	if(argc == 2 && ft_strncmp("tricorn", argv[1], 7) == 0)
-    {
-        f->fract = 3;
         return (1);
     }
     else if(argc == 4 && ft_strncmp("julia", argv[1], 5) == 0
