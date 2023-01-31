@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:55:29 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/30 18:41:52 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:58:37 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,6 @@ void	julia_math(t_fractol *f, double x, double y)
 	else
 		put_pxl_to_img(f, x, y, (inter * f->color * inter));
 }
-// void	julia_math(t_fractol *f, double x, double y)
-// {
-// 	int		inter;
-
-// 	f->z_r = x / f->zoom + f->x1;
-// 	f->z_i = y / f->zoom + f->y1;
-// 	inter = 0;
-// 	while (f->z_r * f->z_r + f->z_i
-// 			* f->z_i < 4 && inter < f->it_max)
-// 	{
-// 		f->tmp = f->z_r;
-// 		f->z_r = f->z_r * f->z_r - f->z_i * f->z_i + (f->c_r / WIDTH);
-// 		f->z_i = 2 * f->z_i * f->tmp + f->c_i / HEIGTH;
-// 		inter++;
-// 	}
-// 	if (inter == f->it_max)
-// 		put_pxl_to_img(f, x, y, 0xffffff);
-// 	else
-// 		put_pxl_to_img(f, x, y, (f->color * inter));
-// }
 
 void	*julia(t_fractol *f)
 {

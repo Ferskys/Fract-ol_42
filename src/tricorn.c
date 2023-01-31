@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   tricorn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:53:42 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 18:26:39 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:26:36 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	mandelbrot_init(t_fractol *f)
+void	tricorn_init(t_fractol *f)
 {
-	f->min_re = -2.2;
-	f->max_re = 1.0;
-	f->min_im = -1.5;
+	f->min_re = -2.1;
+	f->max_re = 2.0;
+	f->min_im = -2.0;
 	f->max_im = (f->max_re - f->min_re) + f->min_im;
 	f->it_max = 100;
 	f->color = 265;
 }
 
-void	mandelbrot_math(t_fractol *f, double x, double y)
+void	tricorn_math(t_fractol *f, double x, double y)
 {
 	int	inter;
 
@@ -37,7 +37,7 @@ void	mandelbrot_math(t_fractol *f, double x, double y)
 	while (inter < f->it_max)
 	{
 		f->tmp = f->z_r * f->z_r - f->z_i * f->z_i + f->c_r;
-		f->z_i = 2 * f->z_i * f->z_r + f->c_i;
+		f->z_i = -2 * f->z_i * f->z_r + f->c_i;
 		f->z_r = f->tmp;
 		if(f->z_r * f->z_r + f->z_i * f->z_i > 4)
 			break;
@@ -49,7 +49,7 @@ void	mandelbrot_math(t_fractol *f, double x, double y)
 		put_pxl_to_img(f, x, y, (inter * f->color * inter));
 }
 
-void	mandelbrot(t_fractol *f)
+void	tricorn(t_fractol *f)
 {
 	double		x;
 	double		y;
@@ -60,7 +60,7 @@ void	mandelbrot(t_fractol *f)
 		y = 0; 
 		while (y < HEIGTH)
 		{
-			mandelbrot_math(f, y, x);
+			tricorn_math(f, y, x);
 			y++;
 		}
 		x++;

@@ -6,7 +6,7 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 03:24:15 by ldias-fe          #+#    #+#              #
-#    Updated: 2023/01/30 18:54:44 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/01/31 18:28:29 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ FILES 	= 	hooks.c \
 			julia.c \
 			main.c \
 			mandelbrot.c \
-			utils.c
+			utils.c \
+			tricorn.c 
 			
 SRCS = $(addprefix ./src/, $(FILES))
 OBJS 		= $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:57:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 16:33:52 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/01/31 18:26:22 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ int				check_julia(int argc, char **argv, t_fractol *f);//
 void			julia_init(t_fractol *f);//
 void			julia_math(t_fractol *f, double x, double y);//
 void			*julia(t_fractol *f);//
+
+void			tricorn_init(t_fractol *f);//
+void			tricorn_math(t_fractol *f, double x, double y);//
+void			tricorn(t_fractol *f);//
 
 int				mouse_zoom(int key, int x, int y, t_fractol *f);//
 int				close_win(t_fractol *f);//
