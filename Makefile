@@ -6,7 +6,7 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 03:24:15 by ldias-fe          #+#    #+#              #
-#    Updated: 2023/01/31 19:16:49 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/02/01 15:00:19 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,18 @@ FILES 	= 	hooks.c \
 			julia.c \
 			main.c \
 			mandelbrot.c \
-			utils.c \
-			tricorn.c 
+			utils.c 
+
+BONUS = $(FILES) tricorn_bonus.c
 			
-PATH_SRC = ./mandatory/src/		
-SRCS = $(addprefix $(PATH_SRC), $(FILES))
-OBJS 		= $(FILES:.c=.o)
-INCLUDES = -I ./mandatory/includes -I ./libft
+PATH_SRC 		= ./mandatory/src/
+SRCS 			= $(addprefix $(PATH_SRC), $(FILES))
+OBJS 			= $(FILES:.c=.o)
+INCLUDES 		= -I ./mandatory/includes -I ./libft
+PATH_SRC_BONUS 	= ./bonus/src/
+SRCS_BONUS 		= $(addprefix $(PATH_SRC), $(FILES))
+OBJS_BONUS 		= $(FILES:.c=.o)
+INCLUDES_BONUS 	= -I ./mandatory/includes -I ./libft
 
 $(NAME): libft/libft.a $(OBJS)
 	cc $(FLAGS) -o $(NAME) $(OBJS) $(LIBFTFLAGS) $(LIBXFLAGS) $(INCLUDES)
