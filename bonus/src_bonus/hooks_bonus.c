@@ -6,18 +6,18 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:37:35 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 19:06:53 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:44:29 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_bonus.h"
+#include "../includes_bonus/fractol_bonus.h"
 
 void	color(t_fractol *f)
 {
-	static int colors;
+	static int	colors;
 
 	colors++;
-	if(colors == 6)
+	if (colors == 6)
 		colors = 0;
 	if (colors == 0)
 		f->color = 265;
@@ -33,9 +33,9 @@ void	color(t_fractol *f)
 		f->color = 37212;
 }
 
-int		key_hook(int keycode, t_fractol *f)
+int	key_hook(int keycode, t_fractol *f)
 {
-	printf("tecla: %d\n", keycode);
+	printf ("tecla: %d\n", keycode);
 	if (keycode == 65307)
 		close_win(f);
 	else if (keycode == 'a')

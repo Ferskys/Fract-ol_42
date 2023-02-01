@@ -6,11 +6,11 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:53:42 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 19:06:53 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:03:35 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol_bonus.h"
+#include "../includes_bonus/fractol_bonus.h"
 
 void	tricorn_init(t_fractol *f)
 {
@@ -44,7 +44,7 @@ void	tricorn_math(t_fractol *f, double x, double y)
 		inter++;
 	}
 	if (inter == f->it_max)
-		put_pxl_to_img(f, x, y, 0xffffff);
+		put_pxl_to_img(f, x, y, 0x22b222);
 	else
 		put_pxl_to_img(f, x, y, (inter * f->color * inter));
 }

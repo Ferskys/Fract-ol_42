@@ -6,13 +6,13 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:38:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 19:03:20 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:55:04 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int		close_win(t_fractol *f)
+int	close_win(t_fractol *f)
 {
 	mlx_destroy_image(f->mlx, f->img);
 	mlx_destroy_window(f->mlx, f->win);
@@ -27,7 +27,7 @@ void	put_pxl_to_img(t_fractol *f, int x, int y, int color)
 	{
 		color = mlx_get_color_value(f->mlx, color);
 		ft_memcpy(f->img_ptr + 4 * WIDTH * y + x * 4,
-				&color, sizeof(int));
+			&color, sizeof(int));
 	}
 }
 
@@ -41,7 +41,7 @@ int	mouse_zoom(int key, int x, int y, t_fractol *f)
 		f->max_re -= f->max_re * 0.1;
 		f->min_im -= f->min_im * 0.1;
 		f->max_im -= f->max_im * 0.1;
-		printf("%f\n",f->max_re);
+		printf ("%f\n", f->max_re);
 	}
 	if (key == 5 && y)
 	{
@@ -49,12 +49,12 @@ int	mouse_zoom(int key, int x, int y, t_fractol *f)
 		f->max_re += f->max_re * 0.1;
 		f->min_im += f->min_im * 0.1;
 		f->max_im += f->max_im * 0.1;
-		printf("%f\n",f->max_re);
+		printf ("%f\n", f->max_re);
 	}
 	return (1);
 }
 
-int		check_double(const char *str)
+int	check_double(const char *str)
 {
 	if (*str == '-' || *str == '+')
 		str++;

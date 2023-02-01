@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:55:29 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/31 19:03:25 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:59:32 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	julia_math(t_fractol *f, double x, double y)
 {
 	int	inter;
 
-
 	f->c_r = f-> min_re + (x * (f->max_re - f->min_re)) / WIDTH;
 	f->c_i = f-> min_im + (y * (f->max_im - f->min_im)) / HEIGTH;
-
 	f->z_r = f->c_r;
 	f->z_i = f->c_i;
 	inter = 0;
@@ -40,8 +38,8 @@ void	julia_math(t_fractol *f, double x, double y)
 		f->tmp = f->z_r * f->z_r - f->z_i * f->z_i + f->arg_re;
 		f->z_i = 2 * f->z_i * f->z_r - f->arg_im;
 		f->z_r = f->tmp;
-		if(f->z_r * f->z_r + f->z_i * f->z_i > 4)
-			break;
+		if (f->z_r * f->z_r + f->z_i * f->z_i > 4)
+			break ;
 		inter++;
 	}
 	if (inter == f->it_max)
@@ -52,9 +50,9 @@ void	julia_math(t_fractol *f, double x, double y)
 
 void	*julia(t_fractol *f)
 {
-	double x; 
-	double y;
-	
+	double	x;
+	double	y;
+
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -67,4 +65,20 @@ void	*julia(t_fractol *f)
 		x++;
 	}
 	return (0);
+}
+
+int	check_julia(int argc, char **argv, t_fractol *f)
+{
+	if (argc != 4)
+		return (0);
+	f->arg_re = ft_atof(argv[2]);
+	if (f->arg_re < -2.0 || f->arg_re > 2.0)
+		return (0);
+	if (!(check_double(argv[2])))
+		return (0);
+	if (!check_double(argv[3]))
+		return (0);
+	if (f->arg_im < -2 || f->arg_im > 2)
+		return (0);
+	return (1);
 }
