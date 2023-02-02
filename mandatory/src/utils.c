@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 14:38:15 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/02/01 15:55:04 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:09:52 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	mouse_zoom(int key, int x, int y, t_fractol *f)
 		f->max_re -= f->max_re * 0.1;
 		f->min_im -= f->min_im * 0.1;
 		f->max_im -= f->max_im * 0.1;
-		printf ("%f\n", f->max_re);
 	}
 	if (key == 5 && y)
 	{
@@ -49,7 +48,6 @@ int	mouse_zoom(int key, int x, int y, t_fractol *f)
 		f->max_re += f->max_re * 0.1;
 		f->min_im += f->min_im * 0.1;
 		f->max_im += f->max_im * 0.1;
-		printf ("%f\n", f->max_re);
 	}
 	return (1);
 }

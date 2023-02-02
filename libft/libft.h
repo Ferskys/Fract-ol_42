@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 23:19:53 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/01/27 14:01:37 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:03:01 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 # define INT_MAX   (2147483647)
 # define INT_MIN (-2147483648)
 
@@ -27,7 +28,16 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_putchar(char c);
+int		ft_putstr(char *s);
+int		ft_putnbru(unsigned int n);
 int		ft_atoi(const char *str);
+int		ft_putnbr(int n);
+int		pointer(unsigned long ptr);
+int		search(char format, va_list arg);
+int		ft_printf(const char *format, ...);
+int		dexs(unsigned long decimalnum, int i, int cpyresult);
+int		dex(unsigned long decimalnum, int i, int cpyresult);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_itoa(int n);
@@ -49,7 +59,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
-void    ft_putendl(char *s);
+void	ft_putendl(char *s);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_bzero(void *s, size_t n);
 

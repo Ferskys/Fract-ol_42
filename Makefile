@@ -6,7 +6,7 @@
 #    By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/08 03:24:15 by ldias-fe          #+#    #+#              #
-#    Updated: 2023/02/01 16:56:39 by fsuomins         ###   ########.fr        #
+#    Updated: 2023/02/02 13:40:05 by fsuomins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,3 +71,7 @@ fclean:	clean
 re:		fclean all
 
 .PHONY: all bonus clean fclean re
+
+# -0.4  0.6
+# 0.285 0.01
+# -0.8 0.156

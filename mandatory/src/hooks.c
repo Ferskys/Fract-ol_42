@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:37:35 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/02/01 15:56:49 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:06:55 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	color(t_fractol *f)
 
 int	key_hook(int keycode, t_fractol *f)
 {
-	printf ("tecla: %d\n", keycode);
+	ft_printf("tecla: %d\n", keycode);
 	if (keycode == 65307)
 		close_win(f);
 	else if (keycode == 'a')

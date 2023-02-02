@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:04:02 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/02/01 15:56:15 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:14:44 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_arg(t_fractol *f, int argc, char **argv)
 		return (1);
 	}
 	else
-		ft_putendl("😞: /fractol \"mandelbrot\"or\"julia [v_re] [v_im]\"");
+		ft_putendl("😞: ./fractol \"mandelbrot\" or \"julia <v_re> <v_im>\"");
 	return (0);
 }
 

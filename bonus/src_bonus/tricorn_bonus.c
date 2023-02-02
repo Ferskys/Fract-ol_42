@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:53:42 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/02/01 17:03:35 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/02 13:47:04 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	tricorn_math(t_fractol *f, double x, double y)
 {
 	int	inter;
 
-
 	f->c_r = f-> min_re + (x * (f->max_re - f->min_re)) / WIDTH;
 	f->c_i = f-> min_im + (y * (f->max_im - f->min_im)) / HEIGTH;
-
 	f->z_r = 0;
 	f->z_i = 0;
 	inter = 0;
@@ -39,8 +37,8 @@ void	tricorn_math(t_fractol *f, double x, double y)
 		f->tmp = f->z_r * f->z_r - f->z_i * f->z_i + f->c_r;
 		f->z_i = -2 * f->z_i * f->z_r + f->c_i;
 		f->z_r = f->tmp;
-		if(f->z_r * f->z_r + f->z_i * f->z_i > 4)
-			break;
+		if (f->z_r * f->z_r + f->z_i * f->z_i > 4)
+			break ;
 		inter++;
 	}
 	if (inter == f->it_max)
@@ -57,7 +55,7 @@ void	tricorn(t_fractol *f)
 	x = 0;
 	while (x < WIDTH)
 	{
-		y = 0; 
+		y = 0;
 		while (y < HEIGTH)
 		{
 			tricorn_math(f, y, x);
