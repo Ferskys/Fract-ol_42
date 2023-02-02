@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:04:02 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/02/02 14:21:47 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:59:50 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	check_arg(t_fractol *f, int argc, char **argv)
 	}
 	else if (argc == 4 && ft_strncmp("julia", argv[1], 5) == 0
 		&& ft_atof(argv[2]) >= -2.0 && ft_atof(argv[2]) <= 2.0
-		&& ft_atof(argv[3]) >= -2.0 && ft_atof(argv[3]) <= 2.0)
+		&& ft_atof(argv[3]) >= -2.0 && ft_atof(argv[3]) <= 2.0
+		&& check_double(argv[2]) && check_double(argv[3]))
 	{
 		f->fract = 2;
 		f->arg_re = ft_atof(argv[2]);
