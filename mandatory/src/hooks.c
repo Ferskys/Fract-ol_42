@@ -6,7 +6,7 @@
 /*   By: fsuomins <fsuomins@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 18:37:35 by fsuomins          #+#    #+#             */
-/*   Updated: 2023/02/02 14:06:55 by fsuomins         ###   ########.fr       */
+/*   Updated: 2023/02/03 18:45:43 by fsuomins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,4 @@ int	key_hook(int keycode, t_fractol *f)
 		color(f);
 	draw_frac(f);
 	return (0);
-}
-
-void	ft_zoom(int x, int y, t_fractol *f)
-{
-	f->x1 = (x / f->zoom + f->x1) - (x / (f->zoom * 1.3));
-	f->y1 = (y / f->zoom + f->y1) - (y / (f->zoom * 1.3));
-	f->zoom *= 1.3;
-	f->it_max++;
 }
